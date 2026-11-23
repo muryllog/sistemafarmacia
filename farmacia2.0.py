@@ -29,8 +29,15 @@ try:
         nome = input("Insira o nome do medicamento: ")
         fabricante = input("Insira o fabricante: ")
         preco = float(input("Insira o preço: "))
+        while preco <= 0:
+          print("Preço inválido! O valor deve ser maior que zero.")
+          preco = float(input("Digite o preço: R$ "))
         validade = input("Insira a validade (AAAA-MM-DD): ")
         cpf_cliente = input("Insira o CPF do cliente: ")
+        while not cpf_cliente.replace(".", "").replace("-", "").isdigit()or len(cpf_cliente) != 14:
+         print("CPF inválido! Digite apenas números, pontos e hífen.")
+         cpf_cliente = input("Insira o CPF do cliente: ")
+         
 
         sql = "INSERT INTO medicamentos (nome, fabricante, preco, validade, cpf_cliente) VALUES (%s, %s, %s, %s, %s)"
         valores = (nome, fabricante, preco, validade, cpf_cliente)
@@ -60,8 +67,14 @@ try:
         nome = input("Digite o novo nome: ")
         fabricante = input("Digite o novo fabricante: ")
         preco = float(input("Digite o novo preço: "))
+        while preco<=0:
+          print("Preço inválido! O valor deve ser maior que zero.")
+          preco = float(input("Digite o preço: R$ "))
         validade = input("Digite a nova validade (AAAA-MM-DD): ")
         cpf_cliente = input("Digite o novo CPF do cliente: ")
+        while not cpf_cliente.replace(".", "").replace("-", "").isdigit()or len(cpf_cliente) != 14:
+                 print("CPF inválido! Digite apenas números, pontos e hífen.")
+                 cpf_cliente = input("Insira o CPF do cliente: ")
 
         sql = "UPDATE medicamentos SET nome=%s, fabricante=%s, preco=%s, validade=%s, cpf_cliente=%s WHERE id_med=%s"
         valores = (nome, fabricante, preco, validade, cpf_cliente, id_med)
@@ -107,6 +120,9 @@ try:
         def cadastrar():
             nome = input("Insira seu nome: ")
             cpf = input("Insira seu CPF: ")
+            while not cpf.replace(".", "").replace("-", "").isdigit()or len(cpf) != 14:
+                     print("CPF inválido! Digite apenas números, pontos e hífen.")
+                     cpf = input("Insira o CPF do cliente: ")
             telefone = input("Insira seu telefone: ")
             email = input("Insira seu email: ")
 
@@ -132,6 +148,9 @@ try:
 
         def atualizar():
             cpf = input("Digite o CPF do cliente: ")
+            while not cpf_cliente.replace(".", "").replace("-", "").isdigit()or len(cpf_cliente) != 14:
+                     print("CPF inválido! Digite apenas números, pontos e hífen.")
+                     cpf_cliente = input("Insira o CPF do cliente: ")
             nome = input("Digite o novo nome: ")
             telefone = input("Digite o novo telefone: ")
             email = input("Digite o novo email: ")
