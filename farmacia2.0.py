@@ -23,17 +23,17 @@ try:
             return None
 
         return f"{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}"
-    
-       # função para validar email
+
+    # função para validar email
     def validar_email(email):
-         formato = r"^[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}$"
-    
-         if re.fullmatch(formato, email):
+        formato = r"^[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}$"
+
+        if re.fullmatch(formato, email):
             return True
-         else:
+        else:
             return False
 
-         # função para validar a validade do medicamento
+    # função para validar a validade do medicamento
     def validar_validade(validade):
         try:
             data_validade = datetime.strptime(validade, "%d/%m/%Y").date()
@@ -193,11 +193,11 @@ try:
 
             telefone = input("Insira seu telefone: ")
             email = input("Insira seu email: ")
-           
+
             while not validar_email(email):
-             print("Email inválido! Digite novamente.")
-            email = input("Insira seu email: ")
-           
+                print("Email inválido! Digite novamente.")
+                email = input("Insira seu email: ")
+
             sql = "INSERT INTO clientes (nome, cpf, telefone, email) VALUES (%s, %s, %s, %s)"
             valores = (nome, cpf, telefone, email)
 
@@ -231,21 +231,21 @@ try:
             nome = input("Digite o novo nome: ")
             telefone = input("Digite o novo telefone: ")
             email = input("Digite o novo email: ")
-           
+
             while not validar_email(email):
-              print("Email inválido! Digite novamente.")
-              email = input("Digite o novo email: ")
-           
-        sql = "UPDATE clientes SET nome=%s, telefone=%s, email=%s WHERE cpf=%s"
-        valores = (nome, telefone, email, cpf)
+                print("Email inválido! Digite novamente.")
+                email = input("Digite o novo email: ")
 
-        cursor.execute(sql, valores)
+            sql = "UPDATE clientes SET nome=%s, telefone=%s, email=%s WHERE cpf=%s"
+            valores = (nome, telefone, email, cpf)
 
-        if cursor.rowcount == 0:
+            cursor.execute(sql, valores)
+
+            if cursor.rowcount == 0:
                 print("CPF não encontrado! Nenhum cliente foi atualizado.")
-        else:
-             conexao.commit()
-             print("Cliente atualizado com sucesso!")
+            else:
+                conexao.commit()
+                print("Cliente atualizado com sucesso!")
 
         def deletar():
             cpf = input("Digite o CPF do cliente: ")
@@ -288,4 +288,3 @@ try:
 
 except Exception as erro:
     print("Erro:", erro)
-
