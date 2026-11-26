@@ -11,7 +11,7 @@ try:
     )
 
     if conexao.is_connected():
-        print("Conectado ao MySQL!")
+        print("Conectado ao MySQL!\n")
 
     cursor = conexao.cursor()
 
@@ -32,6 +32,17 @@ try:
             return True
         else:
             return False
+    # função para validar o telefone    
+    def formatar_telefone(telefone):
+        telefone = telefone.replace("(", "").replace(")", "").replace("-", "").replace(" ", "").strip()
+
+        if not telefone.isdigit() or len(telefone) not in (10, 11):
+            return None
+
+        if len(telefone) == 11:
+            return f"({telefone[:2]}) {telefone[2:7]}-{telefone[7:]}"
+        else:
+            return f"({telefone[:2]}) {telefone[2:6]}-{telefone[6:]}"
 
     # função para validar a validade do medicamento
     def validar_validade(validade):
@@ -48,7 +59,7 @@ try:
 
     def inicio():
         print("Digite:")
-        opcao = input("1 para utilizar CRUD na tabela cliente.\n2 para utilizar na tabela vendas.\n\n")
+        opcao = input("1 para acessar as opções do cliente.\n2 para acessar as opções de vendas.\n\n")
 
         match opcao:
             case "1":
@@ -191,7 +202,15 @@ try:
 
             cpf = formatar_cpf(cpf)
 
+            
             telefone = input("Insira seu telefone: ")
+
+            while formatar_telefone(telefone) is None:
+                print("Telefone inválido!")
+                telefone = input("Insira seu telefone: ")
+
+            telefone = formatar_telefone(telefone)
+            
             email = input("Insira seu email: ")
 
             while not validar_email(email):
@@ -229,7 +248,17 @@ try:
 
             cpf = formatar_cpf(cpf)
             nome = input("Digite o novo nome: ")
-            telefone = input("Digite o novo telefone: ")
+
+
+            telefone = input("Insira o novo telefone: ")
+            
+            while formatar_telefone(telefone) is None:
+                print("Telefone inválido!")
+                telefone = input("Insira o novo telefone: ")
+            
+            telefone = formatar_telefone(telefone)
+
+
             email = input("Digite o novo email: ")
 
             while not validar_email(email):
