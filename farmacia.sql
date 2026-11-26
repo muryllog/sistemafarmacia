@@ -33,7 +33,7 @@ DROP TABLE IF EXISTS `clientes`;
 CREATE TABLE `clientes` (
   `nome` varchar(80) NOT NULL,
   `cpf` varchar(14) NOT NULL,
-  `telefone` varchar(11) NOT NULL,
+  `telefone` varchar(20) NOT NULL,
   `email` varchar(100) NOT NULL,
   PRIMARY KEY (`cpf`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -57,7 +57,7 @@ CREATE TABLE `medicamentos` (
   UNIQUE KEY `id_med` (`id_med`),
   KEY `foreign_cpf` (`cpf_cliente`),
   CONSTRAINT `foreign_cpf` FOREIGN KEY (`cpf_cliente`) REFERENCES `clientes` (`cpf`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -69,4 +69,4 @@ CREATE TABLE `medicamentos` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-11-20 13:47:43
+-- Dump completed on 2026-11-26 15:43:51
